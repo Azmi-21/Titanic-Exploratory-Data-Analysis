@@ -14,7 +14,7 @@ def load_data():
     df = pd.read_csv(DATA_PATH)
     return df
 
-# Q1-a
+# Q1-a: exploratory data analysis
 def basic_overview(df):
     print("Shape:", df.shape)
     print("\nColumns and types:\n", df.dtypes)
@@ -116,6 +116,7 @@ def feature_engineering_family(df):
         df['IsAlone'] = (df['FamilySize'] == 1).astype(int)
     return df
 
+# main
 def main():
     df = load_data()
     basic_overview(df)
