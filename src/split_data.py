@@ -23,7 +23,7 @@ def main():
         X, y,
         test_size=0.2,
         random_state=433,   
-        stratify=y          # Ensuring ratios are preserved
+        stratify=y          # Preserve ratios
     )
 
     # Print basic info

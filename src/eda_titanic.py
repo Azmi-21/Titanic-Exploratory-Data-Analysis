@@ -75,7 +75,6 @@ def boxplot_by_target(df, numeric_col, by='Survived', filename=None):
 
 def correlation_and_heatmap(df, encode=True, filename='corr_heatmap.png'):
     df_corr = df.copy()
-    # simple encoding
     if encode:
         # Encode Sex
         if 'Sex' in df_corr.columns:
@@ -116,7 +115,7 @@ def feature_engineering_family(df):
         df['IsAlone'] = (df['FamilySize'] == 1).astype(int)
     return df
 
-# main
+
 def main():
     df = load_data()
     basic_overview(df)

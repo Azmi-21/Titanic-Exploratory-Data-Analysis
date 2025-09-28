@@ -13,12 +13,14 @@ def main():
     target = "Survived"
     features = ["Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked"]
 
-    X = df[features]
+    # Take an explicit copy to avoid SettingWithCopy warnings
+    X = df.loc[:, features].copy()
     y = df[target]
 
     # Handle missing values (Age: median, Embarked: mode)
-    X["Age"].fillna(X["Age"].median(), inplace=True)
-    X["Embarked"].fillna(X["Embarked"].mode()[0], inplace=True)
+    # Avoid chained assignment and inplace operations on a Series
+    X["Age"] = X["Age"].fillna(X["Age"].median())
+    X["Embarked"] = X["Embarked"].fillna(X["Embarked"].mode()[0])
 
     # One-hot encode categorical features
     X = pd.get_dummies(X, columns=["Sex", "Embarked"], drop_first=True)
